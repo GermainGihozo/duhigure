@@ -2,103 +2,368 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | DUHIGURE MU MIRYANGO</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .mission-vision-box {
+            background: linear-gradient(135deg, #198754 0%, #146c43 100%);
+            border-radius: 15px;
+            color: white;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-vision-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #198754;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #198754;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #198754;
+        }
+        
+        .team-card {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #198754;
+            margin: 0 auto 20px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
 
-<!-- GLOBAL NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
-    <div class="container-fluid">
-
-        <!-- LOGO / TITLE -->
-        <a class="navbar-brand fw-bold" href="index.html">
-            DUHIGURE MU MIRYANGO
-        </a>
-
-        <!-- TOGGLER (Mobile) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- NAV LINKS -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-            <!-- PUBLIC PAGES -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="guide.html">Guide</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="media.html">Media</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="social.html">Social</a>
-                </li>
-            </ul>
-
-            <!-- SYSTEM PAGES -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="system.html">
-                        Family
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="members.html">
-                        Members
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="imihigo.html">
-                        Imihigo
-                    </a>
-                </li>
-            </ul>
-
+    <!-- Page Header -->
+    <section class="page-header bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">About DUHIGURE MU MIRYANGO</h1>
+                    <p class="lead">Transforming Families, Building Communities</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-lg-end">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white-50">Home</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">About</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </section>
 
+    <!-- Introduction Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="images/about-hero.jpg" alt="DUHIGURE Program" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="text-success mb-4">Our Story</h2>
+                    <p class="lead">
+                        DUHIGURE MU MIRYANGO is a family-based performance contract system initiated by
+                        Kibungo Sector to enhance development planning and accountability at household level.
+                    </p>
+                    <p>
+                        The program aligns family goals with national development strategies by assigning
+                        performance duties (Imihigo) to families and individual members. It represents a
+                        grassroots approach to achieving Rwanda's Vision 2050 through family empowerment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="container mt-5">
-    <h2>About DUHIGURE MU MIRYANGO</h2>
-    <p>
-        DUHIGURE MU MIRYANGO is a family-based performance contract system initiated by
-        Kibungo Sector to enhance development planning and accountability at household level.
-    </p>
+    <!-- Mission & Vision -->
+    <section class="py-5">
+        <div class="container">
+            <div class="mission-vision-box">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="text-center">
+                            <i class="bi bi-bullseye display-4 mb-3"></i>
+                            <h3>Our Mission</h3>
+                            <p>
+                                To empower families through structured performance contracts that promote 
+                                accountability, unity, and sustainable development at the household level.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <i class="bi bi-eye display-4 mb-3"></i>
+                            <h3>Our Vision</h3>
+                            <p>
+                                To create a nation where every family actively participates in and contributes 
+                                to Rwanda's development journey through measurable household performance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p>
-        The program aligns family goals with national development strategies by assigning
-        performance duties (Imihigo) to families and individual members.
-    </p>
+    <!-- Program Timeline -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5>2023 - Program Inception</h5>
+                    <p>Conceptualization of DUHIGURE MU MIRYANGO program in Kibungo Sector</p>
+                </div>
+                <div class="timeline-item">
+                    <h5>2024 - Pilot Phase</h5>
+                    <p>Successful implementation with 50 pilot families showing 75% goal achievement rate</p>
+                </div>
+                <div class="timeline-item">
+                    <h5>2025 - Full Launch</h5>
+                    <p>Official launch and expansion to all families in Kibungo Sector with digital system</p>
+                </div>
+                <div class="timeline-item">
+                    <h5>2026 - Expansion Plan</h5>
+                    <p>Planned expansion to Bumbogo District and other sectors nationwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h4>Beneficiaries</h4>
-    <ul>
-        <li>Families</li>
-        <li>Local Leaders</li>
-        <li>Sector Administration</li>
-        <li>National Development Programs</li>
-    </ul>
-</div>
+    <!-- Beneficiaries -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Who Benefits?</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card text-center h-100 border-success">
+                        <div class="card-body">
+                            <i class="bi bi-people-fill display-4 text-success mb-3"></i>
+                            <h5>Families</h5>
+                            <p>Improved household management and unity through shared goals</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card text-center h-100 border-success">
+                        <div class="card-body">
+                            <i class="bi bi-building display-4 text-success mb-3"></i>
+                            <h5>Local Leaders</h5>
+                            <p>Enhanced community governance and development tracking</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card text-center h-100 border-success">
+                        <div class="card-body">
+                            <i class="bi bi-gear display-4 text-success mb-3"></i>
+                            <h5>Sector Administration</h5>
+                            <p>Better data for planning and resource allocation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card text-center h-100 border-success">
+                        <div class="card-body">
+                            <i class="bi bi-globe display-4 text-success mb-3"></i>
+                            <h5>National Programs</h5>
+                            <p>Grassroots support for national development strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer class="bg-dark text-white text-center p-3 mt-5">
-    &copy; 2025 DUHIGURE MU MIRYANGO
-</footer>
+    <!-- Leadership Team -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Program Leadership</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card team-card text-center">
+                        <div class="card-body">
+                            <img src="images/team1.jpg" alt="Program Director" class="team-img">
+                            <h5>Jean de Dieu N.</h5>
+                            <p class="text-success">Program Director</p>
+                            <p>Leading the implementation and expansion of DUHIGURE MU MIRYANGO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card team-card text-center">
+                        <div class="card-body">
+                            <img src="images/team2.jpg" alt="Community Coordinator" class="team-img">
+                            <h5>Marie Claire U.</h5>
+                            <p class="text-success">Community Coordinator</p>
+                            <p>Overseeing family engagement and community mobilization</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card team-card text-center">
+                        <div class="card-body">
+                            <img src="images/team3.jpg" alt="Technical Lead" class="team-img">
+                            <h5>Eric M.</h5>
+                            <p class="text-success">Technical Lead</p>
+                            <p>Managing the digital system development and data analytics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Partners Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Our Partners</h2>
+            <div class="row align-items-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <img src="images/partner1.png" alt="Partner 1" class="img-fluid grayscale">
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <img src="images/partner2.png" alt="Partner 2" class="img-fluid grayscale">
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <img src="images/partner3.png" alt="Partner 3" class="img-fluid grayscale">
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <img src="images/partner4.png" alt="Partner 4" class="img-fluid grayscale">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-success text-white text-center py-5">
+        <div class="container">
+            <h2 class="mb-4">Join the Movement</h2>
+            <p class="lead mb-4">Be part of Rwanda's journey toward sustainable development starting from your family</p>
+            <a href="system.html" class="btn btn-light btn-lg mx-2">
+                <i class="bi bi-people"></i> Register Family
+            </a>
+            <a href="contact.html" class="btn btn-outline-light btn-lg mx-2">
+                <i class="bi bi-envelope"></i> Contact Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>About DUHIGURE</h5>
+                    <p>A family-based performance contract system for sustainable community development.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="guide.html" class="text-white-50">How It Works</a></li>
+                        <li><a href="media.html" class="text-white-50">Media Gallery</a></li>
+                        <li><a href="contact.html" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Info</h5>
+                    <p><i class="bi bi-geo-alt"></i> Kibungo Sector, Bumbogo District</p>
+                    <p><i class="bi bi-envelope"></i> info@duhigure.rw</p>
+                    <p><i class="bi bi-phone"></i> +250 788 123 456</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                &copy; 2025 DUHIGURE MU MIRYANGO | Kibungo Sector | www.duhigure.rw
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Add grayscale effect to partner logos
+        document.addEventListener('DOMContentLoaded', function() {
+            const grayscaleImages = document.querySelectorAll('.grayscale');
+            grayscaleImages.forEach(img => {
+                img.style.filter = 'grayscale(100%)';
+                img.style.opacity = '0.7';
+                img.style.transition = 'all 0.3s';
+                
+                img.addEventListener('mouseenter', function() {
+                    this.style.filter = 'grayscale(0%)';
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('mouseleave', function() {
+                    this.style.filter = 'grayscale(100%)';
+                    this.style.opacity = '0.7';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

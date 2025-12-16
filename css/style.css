@@ -1,49 +1,159 @@
+/* Custom Styles for DUHIGURE MU MIRYANGO */
+
+:root {
+    --primary-color: #198754;
+    --secondary-color: #146c43;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
 }
 
-/* SIDEBAR */
-.sidebar {
-    width: 240px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #198754; /* Bootstrap success */
-    color: #fff;
-    padding-top: 20px;
+/* Hero Section */
+.hero-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-/* SIDEBAR TITLE */
-.sidebar h4 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* SIDEBAR LINKS */
-.sidebar a {
-    display: block;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.sidebar a:hover {
-    background-color: #157347;
-}
-
-/* SECTION LABELS */
-.sidebar .section {
-    padding: 10px 20px;
-    font-size: 12px;
-    opacity: 0.8;
-    margin-top: 15px;
-}
-
-/* MAIN CONTENT */
-.main-content {
-    margin-left: 240px;
+/* Statistics */
+.stat-box {
     padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Icon Box */
+.icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(25, 135, 84, 0.1);
+    border-radius: 50%;
+}
+
+/* Step Box */
+.step-box {
+    padding: 20px;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+/* Form Styling */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Card Hover Effects */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Social Media Feeds */
+.social-feed {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Responsive Images */
+.img-thumbnail {
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Validation Styles */
+.is-valid {
+    border-color: #198754;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+
+/* Loading Spinner */
+.spinner-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Table Styles */
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none;
+    }
 }

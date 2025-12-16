@@ -2,130 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUHIGURE MU MIRYANGO | Home</title>
-
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- Include Navigation -->
+    <div id="navbar-placeholder"></div>
 
-<!-- NAVBAR -->
-<!-- GLOBAL NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
-    <div class="container-fluid">
-
-        <!-- LOGO / TITLE -->
-        <a class="navbar-brand fw-bold" href="index.html">
-            DUHIGURE MU MIRYANGO
-        </a>
-
-        <!-- TOGGLER (Mobile) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- NAV LINKS -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-            <!-- PUBLIC PAGES -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="guide.html">Guide</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="media.html">Media</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="social.html">Social</a>
-                </li>
-            </ul>
-
-            <!-- SYSTEM PAGES -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="system.html">
-                        Family
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="members.html">
-                        Members
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="imihigo.html">
-                        Imihigo
-                    </a>
-                </li>
-            </ul>
-
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-success">DUHIGURE MU MIRYANGO</h1>
+                    <p class="lead">
+                        A Family-Based Performance Contract System for Sustainable Development
+                    </p>
+                    <p>
+                        Implemented in Kibungo Sector to promote accountability, unity, and development at family level.
+                    </p>
+                    <div class="mt-4">
+                        <a href="system.html" class="btn btn-success btn-lg me-3">
+                            <i class="bi bi-people"></i> Register Family
+                        </a>
+                        <a href="guide.html" class="btn btn-outline-success btn-lg">
+                            <i class="bi bi-play-circle"></i> How It Works
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="images/family1.jpg" alt="Family Unity" class="img-fluid rounded shadow">
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </section>
 
-
-<!-- HERO SECTION -->
-<section class="bg-light text-center p-5">
-    <h1 class="fw-bold">DUHIGURE MU MIRYANGO</h1>
-    <p class="lead">
-        A Family-Based Performance Contract System for Sustainable Development
-    </p>
-    <p>
-        Implemented in Kibungo Sector to promote accountability, unity, and development at family level.
-    </p>
-</section>
-
-<!-- OBJECTIVES -->
-<section class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <h4>📌 Accountability</h4>
-            <p>
-                Families define clear performance duties (Imihigo) for every member to achieve development goals.
-            </p>
+    <!-- STATISTICS -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <div class="stat-box">
+                        <h2 class="text-success fw-bold">150+</h2>
+                        <p>Families Registered</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stat-box">
+                        <h2 class="text-success fw-bold">600+</h2>
+                        <p>Family Members</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stat-box">
+                        <h2 class="text-success fw-bold">85%</h2>
+                        <p>Imihigo Completion Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stat-box">
+                        <h2 class="text-success fw-bold">2</h2>
+                        <p>Sectors Active</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h4>👨‍👩‍👧‍👦 Family Unity</h4>
-            <p>
-                Encourages collaboration and shared responsibility among family members.
-            </p>
+    </section>
+
+    <!-- OBJECTIVES -->
+    <section class="container my-5">
+        <h2 class="text-center mb-5">Program Objectives</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-success">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-clipboard-check display-4 text-success"></i>
+                        </div>
+                        <h4>📌 Accountability</h4>
+                        <p>
+                            Families define clear performance duties (Imihigo) for every member to achieve development goals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-success">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-heart display-4 text-success"></i>
+                        </div>
+                        <h4>👨‍👩‍👧‍👦 Family Unity</h4>
+                        <p>
+                            Encourages collaboration and shared responsibility among family members.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-success">
+                    <div class="card-body text-center">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-graph-up display-4 text-success"></i>
+                        </div>
+                        <h4>📈 Development</h4>
+                        <p>
+                            Supports sector and national development programs through measurable family performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h4>📈 Development</h4>
-            <p>
-                Supports sector and national development programs through measurable family performance.
-            </p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="bg-success text-white py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Simple 4-Step Process</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-box text-center">
+                        <div class="step-number">1</div>
+                        <h5>Family Registration</h5>
+                        <p>Register your family in the system</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-box text-center">
+                        <div class="step-number">2</div>
+                        <h5>Add Members</h5>
+                        <p>Register all family members</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-box text-center">
+                        <div class="step-number">3</div>
+                        <h5>Set Imihigo</h5>
+                        <p>Define performance duties</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-box text-center">
+                        <div class="step-number">4</div>
+                        <h5>Track Progress</h5>
+                        <p>Monitor and achieve goals</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CALL TO ACTION -->
-<section class="bg-success text-white text-center p-4 mt-5">
-    <h4>Participate in DUHIGURE MU MIRYANGO</h4>
-    <p>Register your family and contribute to community development.</p>
-</section>
+    <!-- CALL TO ACTION -->
+    <section class="py-5 text-center">
+        <div class="container">
+            <h3>Ready to Transform Your Family?</h3>
+            <p class="lead mb-4">Join hundreds of families already benefiting from DUHIGURE MU MIRYANGO</p>
+            <a href="system.html" class="btn btn-success btn-lg">
+                <i class="bi bi-arrow-right"></i> Start Your Journey
+            </a>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center p-3">
-    &copy; 2025 DUHIGURE MU MIRYANGO | Kibungo Sector | www.duhigure.rw
-</footer>
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>DUHIGURE MU MIRYANGO</h5>
+                    <p>A family-based performance contract system for sustainable development.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="about.html" class="text-white-50">About Program</a></li>
+                        <li><a href="guide.html" class="text-white-50">System Guide</a></li>
+                        <li><a href="contact.html" class="text-white-50">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Info</h5>
+                    <p><i class="bi bi-geo-alt"></i> Kibungo Sector, Bumbogo District</p>
+                    <p><i class="bi bi-envelope"></i> info@duhigure.rw</p>
+                    <p><i class="bi bi-globe"></i> www.duhigure.rw</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                &copy; 2025 DUHIGURE MU MIRYANGO | Developed for Kibungo Sector
+            </div>
+        </div>
+    </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
 </body>
 </html>

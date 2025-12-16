@@ -2,129 +2,604 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Media | DUHIGURE MU MIRYANGO</title>
-
-    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Gallery | DUHIGURE MU MIRYANGO</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .media-filter {
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            margin: 5px;
+        }
+        
+        .media-card {
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .media-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .media-thumbnail {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .media-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .media-card:hover .media-thumbnail img {
+            transform: scale(1.1);
+        }
+        
+        .media-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(25, 135, 84, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 48px;
+        }
+        
+        .media-card:hover .media-overlay {
+            opacity: 1;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .playlist-item {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .playlist-item:hover {
+            background: #f8f9fa;
+            border-color: #198754;
+        }
+        
+        .playlist-item.active {
+            background: #198754;
+            color: white;
+            border-color: #198754;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
 
-<!-- NAVBAR -->
-<!-- GLOBAL NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
-    <div class="container-fluid">
+    <!-- Page Header -->
+    <section class="page-header bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">Media Gallery</h1>
+                    <p class="lead">Images and videos illustrating DUHIGURE MU MIRYANGO activities</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-lg-end">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white-50">Home</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Media</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- LOGO / TITLE -->
-        <a class="navbar-brand fw-bold" href="index.html">
-            DUHIGURE MU MIRYANGO
-        </a>
+    <!-- Media Filter -->
+    <section class="py-5">
+        <div class="container">
+            <div class="media-filter text-center">
+                <h3 class="text-success mb-4">Browse Our Media Collection</h3>
+                <div class="btn-group flex-wrap justify-content-center" role="group">
+                    <button type="button" class="btn btn-outline-success filter-btn active" data-filter="all">
+                        All Media
+                    </button>
+                    <button type="button" class="btn btn-outline-success filter-btn" data-filter="photos">
+                        Photos
+                    </button>
+                    <button type="button" class="btn btn-outline-success filter-btn" data-filter="videos">
+                        Videos
+                    </button>
+                    <button type="button" class="btn btn-outline-success filter-btn" data-filter="documents">
+                        Documents
+                    </button>
+                    <button type="button" class="btn btn-outline-success filter-btn" data-filter="success">
+                        Success Stories
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- TOGGLER (Mobile) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Image Gallery -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">📸 Photo Gallery</h2>
+            
+            <div class="row" id="media-grid">
+                <!-- Family Planning -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/family-planning.jpg" alt="Family Performance Planning">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Family Performance Planning</h5>
+                            <p class="card-text">Families setting their Imihigo for the year during community meetings</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> March 15, 2024</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community Engagement -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/community-meeting.jpg" alt="Community Engagement">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Community Engagement</h5>
+                            <p class="card-text">Local leaders explaining the DUHIGURE system to community members</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> February 28, 2024</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sector Coordination -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/sector-meeting.jpg" alt="Sector Coordination Meeting">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sector Coordination Meeting</h5>
+                            <p class="card-text">Sector officials reviewing family performance reports</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> January 20, 2024</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Training Session -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos success">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/training.jpg" alt="System Training Session">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">System Training Session</h5>
+                            <p class="card-text">Intore mu Ikoranabuhanga training community members on system use</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> December 10, 2023</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Celebration -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos success">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/success-celebration.jpg" alt="Success Celebration">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Success Celebration</h5>
+                            <p class="card-text">Families celebrating achievement of their Imihigo targets</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> November 30, 2023</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Field Visit -->
+                <div class="col-lg-4 col-md-6 media-item" data-category="photos">
+                    <div class="card media-card">
+                        <div class="media-thumbnail">
+                            <img src="images/gallery/field-visit.jpg" alt="Field Visit">
+                            <div class="media-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Field Visit</h5>
+                            <p class="card-text">Officials visiting families to monitor Imihigo implementation</p>
+                            <small class="text-muted"><i class="bi bi-calendar"></i> October 15, 2023</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-success" id="load-more">
+                    <i class="bi bi-plus-circle"></i> Load More Photos
+                </button>
+            </div>
+        </div>
+    </section>
 
-        <!-- NAV LINKS -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
+    <!-- Video Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">🎥 Video Collection</h2>
+            
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="video-container">
+                        <video id="main-video" controls poster="images/video-poster.jpg">
+                            <source src="videos/program-introduction.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div id="video-info">
+                        <h4>Program Introduction</h4>
+                        <p>This video explains the objectives, benefits, and implementation of the DUHIGURE MU MIRYANGO program at family level.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Video Playlist</h5>
+                    <div class="playlist">
+                        <div class="playlist-item active" data-video="videos/program-introduction.mp4" data-title="Program Introduction" data-description="Overview of DUHIGURE MU MIRYANGO program">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="bi bi-play-circle fs-4 text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Program Introduction</h6>
+                                    <small class="text-muted">5:24</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="playlist-item" data-video="videos/how-to-register.mp4" data-title="How to Register" data-description="Step-by-step guide for family registration">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="bi bi-play-circle fs-4 text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">How to Register</h6>
+                                    <small class="text-muted">7:12</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="playlist-item" data-video="videos/success-stories.mp4" data-title="Success Stories" data-description="Real families sharing their experiences">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="bi bi-play-circle fs-4 text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Success Stories</h6>
+                                    <small class="text-muted">10:35</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="playlist-item" data-video="videos/imihigo-setting.mp4" data-title="Setting Imihigo" data-description="Guidance on creating effective performance duties">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="bi bi-play-circle fs-4 text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Setting Imihigo</h6>
+                                    <small class="text-muted">8:47</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="playlist-item" data-video="videos/progress-tracking.mp4" data-title="Progress Tracking" data-description="How to monitor and update your family's progress">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="bi bi-play-circle fs-4 text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Progress Tracking</h6>
+                                    <small class="text-muted">6:15</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- PUBLIC PAGES -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
+    <!-- Documents Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">📑 Program Documents</h2>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-pdf display-4 text-danger mb-3"></i>
+                            <h5>Program Brochure</h5>
+                            <p>Detailed information about DUHIGURE MU MIRYANGO</p>
+                            <a href="documents/brochure.pdf" class="btn btn-outline-success" target="_blank">
+                                <i class="bi bi-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-word display-4 text-primary mb-3"></i>
+                            <h5>Imihigo Template</h5>
+                            <p>Template for setting family performance duties</p>
+                            <a href="documents/imihigo-template.docx" class="btn btn-outline-success" target="_blank">
+                                <i class="bi bi-download"></i> Download DOC
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-text display-4 text-success mb-3"></i>
+                            <h5>Progress Report Form</h5>
+                            <p>Form for tracking and reporting progress</p>
+                            <a href="documents/progress-form.pdf" class="btn btn-outline-success" target="_blank">
+                                <i class="bi bi-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
+    <!-- Upload Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="text-success">Share Your Story</h2>
+                    <p class="lead">Have photos or videos of your family's DUHIGURE journey? Share them with us!</p>
+                    <p>Upload your success stories to inspire other families in the community.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                        <i class="bi bi-cloud-upload"></i> Upload Media
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="guide.html">Guide</a>
-                </li>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Media Gallery</h5>
+                    <p>Visual stories of transformation and success from DUHIGURE families.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="guide.html" class="text-white-50">How It Works</a></li>
+                        <li><a href="social.html" class="text-white-50">Social Media</a></li>
+                        <li><a href="contact.html" class="text-white-50">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Media Inquiries</h5>
+                    <p><i class="bi bi-envelope"></i> media@duhigure.rw</p>
+                    <p><i class="bi bi-telephone"></i> +250 788 987 654</p>
+                    <p><i class="bi bi-camera"></i> Photo/Video Guidelines</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                &copy; 2025 DUHIGURE MU MIRYANGO | Media Gallery | www.duhigure.rw
+            </div>
+        </div>
+    </footer>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="media.html">Media</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="social.html">Social</a>
-                </li>
-            </ul>
-
-            <!-- SYSTEM PAGES -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="system.html">
-                        Family
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="members.html">
-                        Members
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="imihigo.html">
-                        Imihigo
-                    </a>
-                </li>
-            </ul>
-
+    <!-- Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Share Your Media</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Media Type</label>
+                            <select class="form-select">
+                                <option>Photo</option>
+                                <option>Video</option>
+                                <option>Document</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upload File</label>
+                            <input type="file" class="form-control" accept="image/*,video/*,.pdf,.doc,.docx">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" placeholder="Enter title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Tell your story..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Family Name (Optional)</label>
+                            <input type="text" class="form-control" placeholder="Your family name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success">Upload</button>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
 
-
-<!-- PAGE HEADER -->
-<section class="bg-light text-center p-4">
-    <h2>Media Gallery</h2>
-    <p>Images and videos illustrating DUHIGURE MU MIRYANGO activities</p>
-</section>
-
-<!-- IMAGE GALLERY -->
-<div class="container mt-4">
-    <h4 class="mb-3">📸 Image Gallery</h4>
-
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <img src="images/family1.jpg" class="img-fluid rounded shadow">
-            <p class="text-center mt-2">Family Performance Planning</p>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <img src="images/family2.jpg" class="img-fluid rounded shadow">
-            <p class="text-center mt-2">Community Engagement</p>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <img src="images/meeting.png" class="img-fluid rounded shadow">
-            <p class="text-center mt-2">Sector Coordination Meeting</p>
-        </div>
-    </div>
-</div>
-
-<!-- VIDEO SECTION -->
-<div class="container mt-5">
-    <h4 class="mb-3">🎥 Program Introduction Video</h4>
-
-    <video controls width="100%" class="rounded shadow">
-        <source src="videos/duhigure_intro.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <p class="mt-3">
-        This video explains the objectives, benefits, and implementation of the
-        DUHIGURE MU MIRYANGO program at family level.
-    </p>
-</div>
-
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center p-3 mt-5">
-    &copy; 2025 DUHIGURE MU MIRYANGO | Kibungo Sector
-</footer>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Media Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const mediaItems = document.querySelectorAll('.media-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    mediaItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            const categories = item.getAttribute('data-category').split(' ');
+                            if (categories.includes(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Video Playlist
+            const playlistItems = document.querySelectorAll('.playlist-item');
+            const mainVideo = document.getElementById('main-video');
+            const videoInfo = document.getElementById('video-info');
+            
+            playlistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    playlistItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Get video data
+                    const videoSrc = this.getAttribute('data-video');
+                    const videoTitle = this.getAttribute('data-title');
+                    const videoDesc = this.getAttribute('data-description');
+                    
+                    // Update video source
+                    mainVideo.src = videoSrc;
+                    
+                    // Update video info
+                    videoInfo.innerHTML = `
+                        <h4>${videoTitle}</h4>
+                        <p>${videoDesc}</p>
+                    `;
+                    
+                    // Play video
+                    mainVideo.load();
+                    mainVideo.play();
+                });
+            });
+            
+            // Lightbox initialization
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'albumLabel': "Image %1 of %2"
+            });
+            
+            // Load More Photos
+            const loadMoreBtn = document.getElementById('load-more');
+            loadMoreBtn.addEventListener('click', function() {
+                // In production, this would load more photos from server
+                this.innerHTML = '<i class="bi bi-check-circle"></i> All photos loaded';
+                this.disabled = true;
+                this.classList.remove('btn-success');
+                this.classList.add('btn-secondary');
+            });
+            
+            // Handle form submission
+            document.querySelector('#uploadForm button[type="button"]').addEventListener('click', function() {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
+                alert('Media uploaded successfully! It will be reviewed before publishing.');
+                modal.hide();
+                document.getElementById('uploadForm').reset();
+            });
+        });
+    </script>
 </body>
 </html>

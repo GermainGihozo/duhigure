@@ -1,99 +1,461 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>System Guide | DUHIGURE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Guide | DUHIGURE MU MIRYANGO</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .guide-step {
+            position: relative;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .guide-step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #198754;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-question.active {
+            background: #198754;
+            color: white;
+        }
+        
+        .registration-method {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .registration-method:hover {
+            border-color: #198754;
+            box-shadow: 0 5px 15px rgba(25, 135, 84, 0.1);
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
 
-<!-- GLOBAL NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
-    <div class="container-fluid">
-
-        <!-- LOGO / TITLE -->
-        <a class="navbar-brand fw-bold" href="index.html">
-            DUHIGURE MU MIRYANGO
-        </a>
-
-        <!-- TOGGLER (Mobile) -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- NAV LINKS -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-            <!-- PUBLIC PAGES -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="guide.html">Guide</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="media.html">Media</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="social.html">Social</a>
-                </li>
-            </ul>
-
-            <!-- SYSTEM PAGES -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="system.html">
-                        Family
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="members.html">
-                        Members
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="imihigo.html">
-                        Imihigo
-                    </a>
-                </li>
-            </ul>
-
+    <!-- Page Header -->
+    <section class="page-header bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">System Guide</h1>
+                    <p class="lead">Learn how to use DUHIGURE MU MIRYANGO effectively</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-lg-end">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white-50">Home</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Guide</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </section>
 
+    <!-- Registration Methods -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">How to Register Your Family</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="registration-method">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-laptop display-4 text-success"></i>
+                        </div>
+                        <h4>Self-Registration</h4>
+                        <p>Register online through our web portal by yourself</p>
+                        <a href="system.html" class="btn btn-outline-success">Register Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="registration-method">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-person-badge display-4 text-success"></i>
+                        </div>
+                        <h4>Intore mu Ikoranabuhanga</h4>
+                        <p>Get assistance from community ICT champions</p>
+                        <a href="contact.html" class="btn btn-outline-success">Find Assistance</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="registration-method">
+                        <div class="icon-box mb-3">
+                            <i class="bi bi-building display-4 text-success"></i>
+                        </div>
+                        <h4>Administrative Authority</h4>
+                        <p>Visit your sector office for registration support</p>
+                        <a href="contact.html" class="btn btn-outline-success">Contact Office</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="container mt-5">
-    <h2>How the DUHIGURE System Works</h2>
+    <!-- Step-by-Step Guide -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">How the System Works</h2>
+            
+            <div class="guide-step">
+                <div class="step-number">1</div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img src="images/step1.jpg" alt="Family Registration" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Family Information Registration</h3>
+                        <p>Register your family in the system with basic information including:</p>
+                        <ul>
+                            <li>Family name and head of family</li>
+                            <li>National ID number of the head</li>
+                            <li>Contact information (phone number)</li>
+                            <li>Location (sector, cell, village)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-number">2</div>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h3>Family Member Registration</h3>
+                        <p>Add all family members with their details:</p>
+                        <ul>
+                            <li>Full name and relationship to head</li>
+                            <li>Age and gender</li>
+                            <li>Role in the family</li>
+                            <li>Education level and occupation</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img src="images/step2.jpg" alt="Member Registration" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-number">3</div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img src="images/step3.jpg" alt="Imihigo Setting" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Set Performance Duties (Imihigo)</h3>
+                        <p>Define clear performance duties for:</p>
+                        <ul>
+                            <li><strong>Individual Duties:</strong> Specific responsibilities for each member</li>
+                            <li><strong>Family Duties:</strong> Shared responsibilities for all members</li>
+                            <li><strong>Time-bound:</strong> Set target completion dates</li>
+                            <li><strong>Measurable:</strong> Clear criteria for success</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-number">4</div>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h3>Progress Monitoring</h3>
+                        <p>Track and update progress regularly:</p>
+                        <ul>
+                            <li>Update completion status of duties</li>
+                            <li>Upload evidence (photos, documents)</li>
+                            <li>Receive feedback from authorities</li>
+                            <li>Monitor overall family performance</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img src="images/step4.jpg" alt="Progress Tracking" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-number">5</div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img src="images/step5.jpg" alt="Verification" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Verification and Certification</h3>
+                        <p>Complete the performance cycle:</p>
+                        <ul>
+                            <li>Authorities verify completed duties</li>
+                            <li>Receive performance certificates</li>
+                            <li>Qualify for incentives and recognition</li>
+                            <li>Set new goals for next period</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <ol>
-        <li>Family information is registered in the system.</li>
-        <li>Each family member is recorded with full personal details.</li>
-        <li>Individual performance duties are assigned to members.</li>
-        <li>Shared family performance duties are added.</li>
-        <li>Progress is monitored by authorities and community facilitators.</li>
-    </ol>
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Frequently Asked Questions</h2>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Who can register in DUHIGURE MU MIRYANGO?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Any family residing in Kibungo Sector can register. Currently, the program is available to all families in Kibungo, with plans for expansion to other sectors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is there a cost to register?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, registration is completely free for all families. The program is funded by Kibungo Sector to promote community development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What types of Imihigo can we set?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Imihigo can include various areas: economic development, education, health, agriculture, family unity, savings, home improvement, and community service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How often should we update progress?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We recommend updating progress at least monthly. However, you can update anytime you achieve a milestone or complete a duty.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can we modify Imihigo after setting them?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can modify Imihigo with approval from your sector authority if circumstances change. Contact your sector office for modifications.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the benefits of participating?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Benefits include: improved family unity, access to sector support, recognition certificates, priority in some development programs, and contributing to community development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p>
-        Registration can be done by the family, assisted by an Intore mu Ikoranabuhanga,
-        or by an administrative authority.
-    </p>
-</div>
+    <!-- Support Section -->
+    <section class="bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2>Need Help?</h2>
+                    <p class="lead">Our team is ready to assist you with registration and using the system</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="contact.html" class="btn btn-light btn-lg">
+                        <i class="bi bi-headset"></i> Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer class="bg-dark text-white text-center p-3 mt-5">
-    &copy; 2025 DUHIGURE MU MIRYANGO
-</footer>
+    <!-- Resources Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Additional Resources</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-pdf display-4 text-success mb-3"></i>
+                            <h5>User Manual</h5>
+                            <p>Download the complete user manual with detailed instructions</p>
+                            <a href="#" class="btn btn-outline-success">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-play-circle display-4 text-success mb-3"></i>
+                            <h5>Video Tutorials</h5>
+                            <p>Watch step-by-step video guides for using the system</p>
+                            <a href="media.html" class="btn btn-outline-success">Watch Videos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-calendar-check display-4 text-success mb-3"></i>
+                            <h5>Training Schedule</h5>
+                            <p>View upcoming training sessions for families and officials</p>
+                            <a href="#" class="btn btn-outline-success">View Schedule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>DUHIGURE MU MIRYANGO</h5>
+                    <p>Guiding families toward sustainable development through performance contracts.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="system.html" class="text-white-50">Start Registration</a></li>
+                        <li><a href="about.html" class="text-white-50">About Program</a></li>
+                        <li><a href="media.html" class="text-white-50">Video Guides</a></li>
+                        <li><a href="contact.html" class="text-white-50">Get Help</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Support</h5>
+                    <p><i class="bi bi-telephone"></i> +250 788 123 456 (Help Line)</p>
+                    <p><i class="bi bi-envelope"></i> support@duhigure.rw</p>
+                    <p><i class="bi bi-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                &copy; 2025 DUHIGURE MU MIRYANGO | System Guide | www.duhigure.rw
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle current item
+                    this.classList.toggle('active');
+                    
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        icon.classList.remove('bi-chevron-up');
+                        icon.classList.add('bi-chevron-down');
+                    } else {
+                        answer.style.display = 'block';
+                        icon.classList.remove('bi-chevron-down');
+                        icon.classList.add('bi-chevron-up');
+                    }
+                    
+                    // Close other items
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== this) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.nextElementSibling.style.display = 'none';
+                            const otherIcon = otherQuestion.querySelector('i');
+                            otherIcon.classList.remove('bi-chevron-up');
+                            otherIcon.classList.add('bi-chevron-down');
+                        }
+                    });
+                });
+            });
+            
+            // Open first FAQ by default
+            if (faqQuestions.length > 0) {
+                faqQuestions[0].click();
+            }
+        });
+    </script>
 </body>
 </html>

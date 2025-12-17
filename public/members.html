@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Members | DUHIGURE MU MIRYANGO</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .member-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #198754;
+            margin: 0 auto 15px;
+        }
+        
+        .member-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .member-card:hover .member-actions {
+            opacity: 1;
+        }
+        
+        .imihigo-badge {
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .progress-container {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #198754;
+            transition: width 0.3s;
+        }
+        
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Page Header -->
+    <section class="page-header bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">Family Members Management</h1>
+                    <p class="lead">Manage your family members and their Imihigo</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-lg-end">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white-50">Home</a></li>
+                            <li class="breadcrumb-item"><a href="system.html" class="text-white-50">Family</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Members</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family Stats -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-people-fill display-4 text-success mb-2"></i>
+                        <h3 id="totalMembers">5</h3>
+                        <p class="mb-0">Total Members</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-check-circle-fill display-4 text-success mb-2"></i>
+                        <h3 id="activeImihigo">12</h3>
+                        <p class="mb-0">Active Imihigo</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-graph-up display-4 text-success mb-2"></i>
+                        <h3 id="completionRate">75%</h3>
+                        <p class="mb-0">Completion Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <i class="bi bi-award-fill display-4 text-success mb-2"></i>
+                        <h3 id="achievements">8</h3>
+                        <p class="mb-0">Achievements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-success">Family Members</h2>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMemberModal">
+                    <i class="bi bi-person-plus"></i> Add Member
+                </button>
+            </div>
+            
+            <div class="row" id="membersGrid">
+                <!-- Members will be loaded here dynamically -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card member-card">
+                        <div class="member-actions">
+                            <button class="btn btn-sm btn-outline-success" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" title="Remove">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="images/avatars/male1.jpg" alt="Member" class="member-avatar">
+                            <h5>Jean de Dieu N.</h5>
+                            <p class="text-success mb-1">Father • Head of Family</p>
+                            <p class="text-muted mb-2">45 years</p>
+                            
+                            <div class="mb-3">
+                                <span class="badge bg-success imihigo-badge">3 Imihigo</span>
+                                <span class="badge bg-warning imihigo-badge">2 In Progress</span>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                            <small>75% completion</small>
+                            
+                            <button class="btn btn-outline-success btn-sm mt-3 w-100" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#viewMemberModal">
+                                <i class="bi bi-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card member-card">
+                        <div class="member-actions">
+                            <button class="btn btn-sm btn-outline-success" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" title="Remove">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="images/avatars/female1.jpg" alt="Member" class="member-avatar">
+                            <h5>Marie Claire U.</h5>
+                            <p class="text-success mb-1">Mother</p>
+                            <p class="text-muted mb-2">42 years</p>
+                            
+                            <div class="mb-3">
+                                <span class="badge bg-success imihigo-badge">4 Imihigo</span>
+                                <span class="badge bg-success imihigo-badge">3 Completed</span>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                            <small>90% completion</small>
+                            
+                            <button class="btn btn-outline-success btn-sm mt-3 w-100" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#viewMemberModal">
+                                <i class="bi bi-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Members Table (for larger screens) -->
+            <div class="mt-5">
+                <h3 class="mb-4">All Members</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="membersTable">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Name</th>
+                                <th>Relationship</th>
+                                <th>Age</th>
+                                <th>Role</th>
+                                <th>Imihigo</th>
+                                <th>Progress</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/avatars/male1.jpg" alt="Avatar" 
+                                             class="rounded-circle me-2" width="40" height="40">
+                                        Jean de Dieu N.
+                                    </div>
+                                </td>
+                                <td>Father</td>
+                                <td>45</td>
+                                <td>Head of Family</td>
+                                <td>
+                                    <span class="badge bg-success">3 Assigned</span>
+                                    <span class="badge bg-warning">2 Active</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="progress-container flex-grow-1 me-2">
+                                            <div class="progress-bar" style="width: 75%"></div>
+                                        </div>
+                                        <span>75%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-success" title="View">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" title="Remove">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Imihigo Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center text-success mb-5">Member Imihigo Overview</h2>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-list-check"></i> Imihigo Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="imihigoChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-graph-up"></i> Performance Trends</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="performanceChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Actions -->
+    <section class="py-5">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-success mb-4"><i class="bi bi-gear"></i> Bulk Actions</h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-outline-success w-100" data-bs-toggle="modal" data-bs-target="#assignImihigoModal">
+                                <i class="bi bi-plus-circle"></i> Assign Imihigo to All
+                            </button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-outline-success w-100" onclick="exportMembersData()">
+                                <i class="bi bi-download"></i> Export Member Data
+                            </button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-outline-success w-100" onclick="printMembersReport()">
+                                <i class="bi bi-printer"></i> Print Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Family Members</h5>
+                    <p>Manage your family members and track their Imihigo progress.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Actions</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="system.html" class="text-white-50">Add New Family</a></li>
+                        <li><a href="imihigo.html" class="text-white-50">Manage Imihigo</a></li>
+                        <li><a href="reports.html" class="text-white-50">View Reports</a></li>
+                        <li><a href="guide.html" class="text-white-50">Help Guide</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Support</h5>
+                    <p><i class="bi bi-question-circle"></i> Need help managing members?</p>
+                    <a href="contact.html" class="btn btn-outline-light btn-sm">Contact Support</a>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center pt-3">
+                &copy; 2025 DUHIGURE MU MIRYANGO | Family Members Management | www.duhigure.rw
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Member Modal -->
+    <div class="modal fade" id="addMemberModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Family Member</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newMemberForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="newMemberName" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Relationship *</label>
+                                <select class="form-select" id="newMemberRelation" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="father">Father</option>
+                                    <option value="mother">Mother</option>
+                                    <option value="child">Child</option>
+                                    <option value="spouse">Spouse</option>
+                                    <option value="grandparent">Grandparent</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Age *</label>
+                                <input type="number" class="form-control" id="newMemberAge" min="0" max="120" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Gender *</label>
+                                <select class="form-select" id="newMemberGender" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="newMemberDOB">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Role in Family</label>
+                            <input type="text" class="form-control" id="newMemberRole" 
+                                   placeholder="E.g., Student, Farmer, Business Owner">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Occupation</label>
+                            <input type="text" class="form-control" id="newMemberOccupation" 
+                                   placeholder="Current occupation">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Education Level</label>
+                            <select class="form-select" id="newMemberEducation">
+                                <option value="">-- Select --</option>
+                                <option value="none">No Formal Education</option>
+                                <option value="primary">Primary</option>
+                                <option value="secondary">Secondary</option>
+                                <option value="university">University</option>
+                                <option value="vocational">Vocational Training</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="saveNewMember">Add Member</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Member Modal -->
+    <div class="modal fade" id="viewMemberModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Member Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="memberDetails">
+                        <!-- Member details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Initialize DataTable
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize members table
+            $('#membersTable').DataTable({
+                pageLength: 10,
+                language: {
+                    search: "Search members:",
+                    lengthMenu: "Show _MENU_ members"
+                }
+            });
+            
+            // Initialize charts
+            initImihigoChart();
+            initPerformanceChart();
+            
+            // Load sample data
+            loadSampleData();
+            
+            // Add member functionality
+            document.getElementById('saveNewMember').addEventListener('click', function() {
+                const name = document.getElementById('newMemberName').value.trim();
+                const relation = document.getElementById('newMemberRelation').value;
+                const age = document.getElementById('newMemberAge').value;
+                const gender = document.getElementById('newMemberGender').value;
+                
+                if (name && relation && age && gender) {
+                    // In production, this would save to server
+                    addMemberToGrid({
+                        name: name,
+                        relation: relation,
+                        age: age,
+                        gender: gender,
+                        role: document.getElementById('newMemberRole').value,
+                        occupation: document.getElementById('newMemberOccupation').value,
+                        education: document.getElementById('newMemberEducation').value
+                    });
+                    
+                    // Close modal and reset form
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addMemberModal'));
+                    modal.hide();
+                    document.getElementById('newMemberForm').reset();
+                    
+                    updateStats();
+                } else {
+                    alert('Please fill all required fields.');
+                }
+            });
+        });
+        
+        function loadSampleData() {
+            // This would normally load from server
+            const sampleMembers = [
+                {
+                    name: "Eric M.",
+                    relation: "Child",
+                    age: 18,
+                    gender: "male",
+                    role: "Student",
+                    imihigo: 2,
+                    progress: 50
+                },
+                {
+                    name: "Alice U.",
+                    relation: "Child",
+                    age: 15,
+                    gender: "female",
+                    role: "Student",
+                    imihigo: 1,
+                    progress: 100
+                },
+                {
+                    name: "David N.",
+                    relation: "Grandparent",
+                    age: 70,
+                    gender: "male",
+                    role: "Retired",
+                    imihigo: 1,
+                    progress: 80
+                }
+            ];
+            
+            sampleMembers.forEach(member => addMemberToGrid(member));
+        }
+        
+        function addMemberToGrid(member) {
+            const membersGrid = document.getElementById('membersGrid');
+            const avatar = member.gender === 'male' ? 'male2.jpg' : 'female2.jpg';
+            
+            const memberCard = `
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card member-card">
+                        <div class="member-actions">
+                            <button class="btn btn-sm btn-outline-success" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" title="Remove" onclick="removeMemberCard(this)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="images/avatars/${avatar}" alt="Member" class="member-avatar">
+                            <h5>${member.name}</h5>
+                            <p class="text-success mb-1">${member.relation} • ${member.role || 'Member'}</p>
+                            <p class="text-muted mb-2">${member.age} years</p>
+                            
+                            <div class="mb-3">
+                                <span class="badge bg-success imihigo-badge">${member.imihigo || 0} Imihigo</span>
+                                <span class="badge bg-${member.progress === 100 ? 'success' : 'warning'} imihigo-badge">
+                                    ${member.progress || 0}% Complete
+                                </span>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: ${member.progress || 0}%"></div>
+                            </div>
+                            <small>${member.progress || 0}% completion</small>
+                            
+                            <button class="btn btn-outline-success btn-sm mt-3 w-100" 
+                                    onclick="viewMemberDetails('${member.name}')">
+                                <i class="bi bi-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            membersGrid.innerHTML += memberCard;
+        }
+        
+        function removeMemberCard(button) {
+            if (confirm('Remove this member?')) {
+                const card = button.closest('.col-lg-4');
+                card.remove();
+                updateStats();
+            }
+        }
+        
+        function viewMemberDetails(memberName) {
+            // In production, this would fetch member details from server
+            const memberDetails = document.getElementById('memberDetails');
+            memberDetails.innerHTML = `
+                <div class="text-center mb-4">
+                    <img src="images/avatars/male2.jpg" alt="Member" class="rounded-circle" width="120" height="120">
+                    <h4 class="mt-3">${memberName}</h4>
+                    <p class="text-success">Child • Student</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Personal Information</h5>
+                        <p><strong>Age:</strong> 18 years</p>
+                        <p><strong>Gender:</strong> Male</p>
+                        <p><strong>Date of Birth:</strong> January 15, 2006</p>
+                        <p><strong>Education:</strong> Secondary School</p>
+                        <p><strong>Occupation:</strong> Student</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Imihigo Status</h5>
+                        <p><strong>Total Assigned:</strong> 2</p>
+                        <p><strong>Completed:</strong> 1</p>
+                        <p><strong>In Progress:</strong> 1</p>
+                        <p><strong>Overall Progress:</strong> 50%</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Assigned Imihigo</h5>
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="mb-1">Complete Mathematics Revision</h6>
+                                    <small>Education • Due: June 30, 2024</small>
+                                </div>
+                                <span class="badge bg-success">Completed</span>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="mb-1">Assist in Home Gardening</h6>
+                                    <small>Family Duties • Due: December 31, 2024</small>
+                                </div>
+                                <span class="badge bg-warning">In Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const modal = new bootstrap.Modal(document.getElementById('viewMemberModal'));
+            modal.show();
+        }
+        
+        function updateStats() {
+            const memberCards = document.querySelectorAll('.member-card');
+            document.getElementById('totalMembers').textContent = memberCards.length;
+            
+            // In production, these would be calculated from actual data
+            document.getElementById('activeImihigo').textContent = '12';
+            document.getElementById('completionRate').textContent = '75%';
+            document.getElementById('achievements').textContent = '8';
+        }
+        
+        function initImihigoChart() {
+            const ctx = document.getElementById('imihigoChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'In Progress', 'Not Started'],
+                    datasets: [{
+                        data: [8, 4, 2],
+                        backgroundColor: ['#198754', '#ffc107', '#6c757d']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+        
+        function initPerformanceChart() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Imihigo Completion %',
+                        data: [60, 65, 70, 68, 75, 75],
+                        backgroundColor: '#198754'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+        
+        function exportMembersData() {
+            // In production, this would export actual data
+            alert('Members data exported successfully!');
+        }
+        
+        function printMembersReport() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

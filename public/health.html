@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Health | DUHIGURE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .health-container {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        
+        .health-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .status-healthy {
+            background: #198754;
+        }
+        
+        .status-warning {
+            background: #ffc107;
+        }
+        
+        .status-error {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="health-container">
+        <div class="health-card">
+            <h1 class="text-center mb-4">
+                <i class="bi bi-heart-pulse"></i> DUHIGURE System Health
+            </h1>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">System Status</h5>
+                            <p class="card-text">
+                                <span class="status-indicator status-healthy"></span>
+                                <strong>Status:</strong> Operational
+                            </p>
+                            <p class="card-text">
+                                <strong>Version:</strong> 1.0.0
+                            </p>
+                            <p class="card-text">
+                                <strong>Uptime:</strong> <span id="uptime">--</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">API Status</h5>
+                            <p class="card-text">
+                                <span class="status-indicator status-healthy"></span>
+                                <strong>Health Check:</strong> Healthy
+                            </p>
+                            <p class="card-text">
+                                <span class="status-indicator status-healthy"></span>
+                                <strong>Statistics API:</strong> Operational
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">System Information</h5>
+                    <pre id="system-info" class="bg-light p-3 rounded"></pre>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="/" class="btn btn-success">
+                    <i class="bi bi-arrow-left"></i> Back to Application
+                </a>
+                <button onclick="refreshHealth()" class="btn btn-outline-success ms-2">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function loadHealthData() {
+            try {
+                // Load health check
+                const healthResponse = await fetch('/api/health');
+                const healthData = await healthResponse.json();
+                
+                // Load stats
+                const statsResponse = await fetch('/api/stats');
+                const statsData = await statsResponse.json();
+                
+                // Update system info
+                document.getElementById('system-info').textContent = JSON.stringify({
+                    health: healthData,
+                    statistics: statsData,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent
+                }, null, 2);
+                
+            } catch (error) {
+                console.error('Error loading health data:', error);
+                document.getElementById('system-info').textContent = 'Error loading system information';
+            }
+        }
+        
+        function refreshHealth() {
+            loadHealthData();
+        }
+        
+        // Calculate uptime
+        function updateUptime() {
+            // This would normally come from the server
+            const startTime = new Date();
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startTime;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('uptime').textContent = 
+                    `${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHealthData();
+            updateUptime();
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

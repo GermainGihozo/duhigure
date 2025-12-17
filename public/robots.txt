@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.duhigure.rw/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 10
+
+# Disallow admin area
+Disallow: /admin/
+Disallow: /api/
+Disallow: /health/

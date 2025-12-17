@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duhigure-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: duhigure
+  template:
+    metadata:
+      labels:
+        app: duhigure
+    spec:
+      containers:
+      - name: duhigure-container
+        image: germainigihozo/duhigure:latest
+        ports:
+        - containerPort: 3000
